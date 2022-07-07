@@ -4,6 +4,7 @@ import cors from "cors";
 import fileUpload from "express-fileupload";
 import cookieParser from "cookie-parser";
 import ConnectMongoDB from "./src/database/mongodb";
+import mainRoutes from "./src/routes";
 
 dotenv.config({ path: "./src/config/.env" });
 
@@ -19,6 +20,8 @@ app.use(
 
 // Connect to mongodb
 ConnectMongoDB();
+// Routes
+mainRoutes(app);
 
 app.get("/", (req, res) => {
   res.send("Hello World");
