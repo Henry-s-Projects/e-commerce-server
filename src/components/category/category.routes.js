@@ -7,6 +7,8 @@ const categoryRoutes = express.Router();
 categoryRoutes.get("/", categoryController.getCategories);
 // POST
 categoryRoutes.post("/", authAdmin, categoryController.createCategory);
+categoryRoutes.post("/upload", authAdmin, categoryController.uploadImg);
+categoryRoutes.post("/destroy", authAdmin, categoryController.deleteImg);
 // PUT
 categoryRoutes.put("/:id", authAdmin, categoryController.updateCategory);
 // DELETE
