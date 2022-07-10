@@ -10,9 +10,9 @@ const getProducts = async (req, res) => {
     const page = query.page ? parseInt(query.page) - 1 : 0;
     const sort = query.sort ? query.sort : "-sold";
 
-    const max = query.max ? parseInt(query.max) : MAX_PRICE;
-    const min = query.min ? parseInt(query.min) : MIN_PRICE;
-    query.price = { $gte: min, $lte: max };
+    const maxPrice = query.maxPrice ? parseInt(query.maxPrice) : MAX_PRICE;
+    const minPrice = query.minPrice ? parseInt(query.minPrice) : MIN_PRICE;
+    query.price = { $gte: minPrice, $lte: maxPrice };
 
     delete query.itemsPerPage;
     delete query.page;
