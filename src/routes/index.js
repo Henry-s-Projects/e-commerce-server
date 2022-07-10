@@ -6,7 +6,7 @@ import auth from "../middlewares/auth";
 const mainRoute = (app) => {
   app.use("/user", userRoutes);
   app.use("/category", auth, categoryRoutes);
-  app.use("/product", auth, productRoutes);
+  app.use("/product", productRoutes);
 };
 
 export default mainRoute;
