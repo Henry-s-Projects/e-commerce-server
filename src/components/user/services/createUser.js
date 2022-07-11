@@ -1,4 +1,4 @@
-import User from "../user.model";
+import User from '../user.model';
 
 const createUser = async (info) => {
   const newUser = new User(info);

@@ -1,10 +1,10 @@
-import cloudinary from "./cloudinary";
-import removeTmp from "./removeTmp";
+import cloudinary from './cloudinary';
+import removeTmp from './removeTmp';
 
 const uploadImgToCloud = async (URLfile) => {
   try {
     const uploadResponse = await cloudinary.uploader.upload(URLfile, {
-      folder: "ecommerce",
+      folder: 'ecommerce',
     });
     if (uploadResponse) {
       const result = {

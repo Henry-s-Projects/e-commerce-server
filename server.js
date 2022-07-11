@@ -1,12 +1,12 @@
-import dotenv from "dotenv";
-import express from "express";
-import cors from "cors";
-import fileUpload from "express-fileupload";
-import cookieParser from "cookie-parser";
-import ConnectMongoDB from "./src/database/mongodb";
-import mainRoutes from "./src/routes";
+import dotenv from 'dotenv';
+import express from 'express';
+import cors from 'cors';
+import fileUpload from 'express-fileupload';
+import cookieParser from 'cookie-parser';
+import ConnectMongoDB from './src/database/mongodb';
+import mainRoutes from './src/routes';
 
-dotenv.config({ path: "./src/config/.env" });
+dotenv.config({ path: './src/config/.env' });
 
 const app = express();
 app.use(express.json());
@@ -23,11 +23,11 @@ ConnectMongoDB();
 // Routes
 mainRoutes(app);
 
-app.get("/", (req, res) => {
-  res.send("Hello World");
+app.get('/', (req, res) => {
+  res.send('Hello World');
 });
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log("Server is running on port: ", PORT);
+  console.log('Server is running on port: ', PORT);
 });

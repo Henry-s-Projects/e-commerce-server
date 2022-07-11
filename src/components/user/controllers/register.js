@@ -1,7 +1,5 @@
-import userServices from "../services";
-import brcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-import User from "../user.model";
+import userServices from '../services';
+import User from '../user.model';
 
 const register = async (req, res) => {
   try {
@@ -9,13 +7,13 @@ const register = async (req, res) => {
     const user = await userServices.getUser({ email: email });
 
     if (user) {
-      return res.status(400).json({ msg: "Email already exists" });
+      return res.status(400).json({ msg: 'Email already exists' });
     }
 
     if (password.length < 6) {
       return res
         .status(400)
-        .json({ msg: "Password must be at least 6 characters" });
+        .json({ msg: 'Password must be at least 6 characters' });
     }
 
     const newUser = await userServices.createUser({
@@ -27,13 +25,13 @@ const register = async (req, res) => {
     const accessToken = User.generateToken(newUser);
     const refreshToken = User.refreshToken(newUser);
 
-    res.cookie("refreshToken", refreshToken, {
+    res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
-      path: "/user/refresh_token",
+      path: '/user/refresh_token',
     });
 
     res.status(201).json({
-      msg: "create user successful",
+      msg: 'create user successful',
       payload: newUser,
       token: accessToken,
     });

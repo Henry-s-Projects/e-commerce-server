@@ -1,4 +1,4 @@
-import fs from "fs";
+import fs from 'fs';
 
 const removeTmp = (filePath) => {
   fs.unlink(filePath, (err) => {

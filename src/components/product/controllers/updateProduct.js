@@ -1,10 +1,10 @@
-import productServices from "../services";
+import productServices from '../services';
 
 const updateProduct = async (req, res) => {
   try {
     const { id } = req.params;
     await productServices.updateById(id, req.body);
-    return res.json({ msg: "product updated" });
+    return res.json({ msg: 'product updated' });
   } catch (error) {
     return res.status(500).json({ msg: error.message });
   }

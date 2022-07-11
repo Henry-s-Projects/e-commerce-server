@@ -1,4 +1,4 @@
-import Product from "../product.model";
+import Product from '../product.model';
 
 const createNewProduct = async (data) => {
   try {
@@ -6,7 +6,7 @@ const createNewProduct = async (data) => {
       data;
     const product = await Product.findOne({ product_id });
     if (product) {
-      throw new Error("Product already exists");
+      throw new Error('Product already exists');
     }
     const newProduct = new Product({
       product_id,

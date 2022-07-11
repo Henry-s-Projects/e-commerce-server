@@ -1,5 +1,5 @@
-import userServices from "../services";
-import User from "../user.model";
+import userServices from '../services';
+import User from '../user.model';
 
 const login = async (req, res) => {
   try {
@@ -7,24 +7,24 @@ const login = async (req, res) => {
 
     const user = await userServices.getUser({ email: email });
     if (!user) {
-      return res.status(400).json({ msg: "User does not exist" });
+      return res.status(400).json({ msg: 'User does not exist' });
     }
 
     const isMatch = await userServices.comparePassword(user, password);
     if (!isMatch) {
-      return res.status(400).json({ msg: "Incorrect password" });
+      return res.status(400).json({ msg: 'Incorrect password' });
     }
 
     const accessToken = User.generateToken(user);
     const refreshToken = User.refreshToken(user);
 
-    res.cookie("refreshToken", refreshToken, {
+    res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
-      path: "/user/refresh_token",
+      path: '/user/refresh_token',
     });
 
     return res.status(201).json({
-      msg: "login successful",
+      msg: 'login successful',
       payload: user,
       token: accessToken,
     });

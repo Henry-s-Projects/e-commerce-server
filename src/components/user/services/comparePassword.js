@@ -1,4 +1,4 @@
-import bcrypt from "bcrypt";
+import bcrypt from 'bcrypt';
 
 const comparePassword = async (user, password) => {
   const result = await bcrypt.compare(password, user.password);

@@ -1,4 +1,4 @@
-import productServices from "../services";
+import productServices from '../services';
 
 const MAX_PRICE = process.env.MAX_PRICE || 1000000000;
 const MIN_PRICE = process.env.MIN_PRICE || 0;
@@ -8,7 +8,7 @@ const getProducts = async (req, res) => {
     const query = req.query;
     const itemsPerPage = query.itemsPerPage ? parseInt(query.itemsPerPage) : 0;
     const page = query.page ? parseInt(query.page) - 1 : 0;
-    const sort = query.sort ? query.sort : "-sold";
+    const sort = query.sort ? query.sort : '-sold';
 
     const maxPrice = query.maxPrice ? parseInt(query.maxPrice) : MAX_PRICE;
     const minPrice = query.minPrice ? parseInt(query.minPrice) : MIN_PRICE;

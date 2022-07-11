@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
+import mongoose from 'mongoose';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 const SALT_ROUNDS = 10;
 
@@ -22,8 +22,8 @@ const UserSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ["user", "admin"],
-      default: "user",
+      enum: ['user', 'admin'],
+      default: 'user',
     },
     cart: {
       type: Array,
@@ -54,7 +54,7 @@ UserSchema.statics.generateToken = function (userInfo) {
     },
     process.env.ACCESS_TOKEN_SECRET,
     {
-      expiresIn: "1h",
+      expiresIn: '1h',
     }
   );
 
@@ -73,20 +73,20 @@ UserSchema.statics.refreshToken = function (userInfo) {
     },
     process.env.REFRESH_TOKEN_SECRET,
     {
-      expiresIn: "7d",
+      expiresIn: '7d',
     }
   );
   return refreshToken;
 };
 
-UserSchema.pre("save", async function () {
+UserSchema.pre('save', async function () {
   const user = this;
 
-  if (user.isModified("password")) {
+  if (user.isModified('password')) {
     user.password = await bcrypt.hash(user.password, SALT_ROUNDS);
   }
 });
 
-const User = mongoose.model("Users", UserSchema);
+const User = mongoose.model('Users', UserSchema);
 
 export default User;

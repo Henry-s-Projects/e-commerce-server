@@ -2,11 +2,11 @@ const authAdmin = async (req, res, next) => {
   try {
     const user = req.user;
     if (!user) {
-      return res.status(401).json({ msg: "You are not authorized" });
+      return res.status(401).json({ msg: 'You are not authorized' });
     }
 
-    if (user.role !== "admin") {
-      return res.status(403).json({ msg: "Admin resource denied." });
+    if (user.role !== 'admin') {
+      return res.status(403).json({ msg: 'Admin resource denied.' });
     }
 
     next();

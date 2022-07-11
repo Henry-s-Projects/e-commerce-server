@@ -1,4 +1,4 @@
-import Users from "../user.model";
+import Users from '../user.model';
 
 const getUser = async (filter) => {
   const user = await Users.findOne(filter);

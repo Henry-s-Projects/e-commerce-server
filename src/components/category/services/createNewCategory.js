@@ -1,12 +1,12 @@
-import Category from "../category.model";
-import findByName from "./findByName";
+import Category from '../category.model';
+import findByName from './findByName';
 
 const createNewCategory = async (name) => {
   try {
     const category = await findByName(name);
 
     if (category !== null) {
-      throw new Error("Category already exists");
+      throw new Error('Category already exists');
     }
 
     const newCategory = new Category({
