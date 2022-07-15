@@ -8,9 +8,11 @@ import mainRoutes from './src/routes';
 
 dotenv.config({ path: './src/config/.env' });
 
+const whitelist = ['http://localhost:3000'];
+
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({ credentials: true, origin: [...whitelist] }));
 app.use(cookieParser());
 app.use(
   fileUpload({
@@ -23,8 +25,16 @@ ConnectMongoDB();
 // Routes
 mainRoutes(app);
 
-app.get('/', (req, res) => {
-  res.send('Hello World');
+const token =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoiNjJjODQ4ODJhMDg0OWIyOTIwOTU3ZGY4IiwibmFtZSI6IlZ1IEx1dSIsImVtYWlsIjoidHJ1b25ndnVrdDIwMDBAZ21haWwuY29tIiwicm9sZSI6InVzZXIifSwiaWF0IjoxNjU3ODg1MzQ3LCJleHAiOjE2NTg0OTAxNDd9.jzrH-shJcDP1x3_fvl2VhgU67aNSjn1LXLhj2IwtY1M';
+
+app.post('/a', (req, res) => {
+  res.cookie('refreshToken', token, {
+    httpOnly: true,
+    path: '/user/refresh_token',
+  });
+
+  res.json({ status: 'ok' });
 });
 
 const PORT = process.env.PORT || 5000;

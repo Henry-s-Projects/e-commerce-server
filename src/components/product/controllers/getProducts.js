@@ -25,6 +25,7 @@ const getProducts = async (req, res) => {
       page,
       sort
     );
+
     return res.json({ result: products.length, payload: products });
   } catch (error) {
     return res.status(500).json({ msg: error.message });

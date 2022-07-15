@@ -7,12 +7,12 @@ const login = async (req, res) => {
 
     const user = await userServices.getUser({ email: email });
     if (!user) {
-      return res.status(400).json({ msg: 'User does not exist' });
+      return res.status(400).json({ msg: 'Incorrect email or password' });
     }
 
     const isMatch = await userServices.comparePassword(user, password);
     if (!isMatch) {
-      return res.status(400).json({ msg: 'Incorrect password' });
+      return res.status(400).json({ msg: 'Incorrect email or password' });
     }
 
     const accessToken = User.generateToken(user);
@@ -23,7 +23,7 @@ const login = async (req, res) => {
       path: '/user/refresh_token',
     });
 
-    return res.status(201).json({
+    return res.json({
       msg: 'login successful',
       payload: user,
       token: accessToken,
