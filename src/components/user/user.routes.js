@@ -13,5 +13,7 @@ userRoutes.post('/register', userController.register);
 userRoutes.post('/login', userController.login);
 // PUT
 // DELETE
+// PATCH
+userRoutes.patch('/addCart', auth, userController.addCart);
 
 export default userRoutes;

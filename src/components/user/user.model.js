@@ -6,6 +6,9 @@ const SALT_ROUNDS = 10;
 
 const UserSchema = new mongoose.Schema(
   {
+    _id: {
+      type: mongoose.Schema.Types.ObjectId,
+    },
     name: {
       type: String,
       required: true,
@@ -46,7 +49,7 @@ UserSchema.statics.generateToken = function (userInfo) {
   const accessToken = jwt.sign(
     {
       data: {
-        id: userInfo._id,
+        id: userInfo.id,
         name: userInfo.name,
         email: userInfo.email,
         role: userInfo.role,
@@ -65,7 +68,7 @@ UserSchema.statics.refreshToken = function (userInfo) {
   const refreshToken = jwt.sign(
     {
       data: {
-        id: userInfo._id,
+        id: userInfo.id,
         name: userInfo.name,
         email: userInfo.email,
         role: userInfo.role,
