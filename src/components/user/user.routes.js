@@ -8,6 +8,7 @@ const userRoutes = express.Router();
 userRoutes.get('/refresh_token', userController.refreshToken);
 userRoutes.get('/logout', userController.logout);
 userRoutes.get('/getInfo', auth, userController.getInfo);
+userRoutes.get('/history', auth, userController.historyOrder);
 // POST
 userRoutes.post('/register', userController.register);
 userRoutes.post('/login', userController.login);

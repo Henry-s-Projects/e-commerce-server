@@ -3,9 +3,10 @@ import paymentServices from '../services';
 const createPayment = async (req, res) => {
   try {
     const user = req.user;
+
     const { cart, paymentID, address } = req.body;
     const newPayment = await paymentServices.createNewPayment({
-      user_id: user._id,
+      user_id: user.id,
       name: user.name,
       email: user.email,
       paymentID,
