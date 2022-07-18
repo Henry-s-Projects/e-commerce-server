@@ -8,7 +8,7 @@ import mainRoutes from './src/routes';
 
 dotenv.config({ path: './src/config/.env' });
 
-const whitelist = ['http://localhost:3000'];
+const whitelist = ['http://localhost:3000', process.env.FRONTEND_URL];
 
 const app = express();
 app.use(express.json());
