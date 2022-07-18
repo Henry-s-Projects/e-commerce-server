@@ -8,11 +8,13 @@ import mainRoutes from './src/routes';
 
 dotenv.config({ path: './src/config/.env' });
 
-const whitelist = ['http://localhost:3000', process.env.FRONTEND_URL];
+const whitelist = ['http://localhost:3000'];
 
 const app = express();
 app.use(express.json());
-app.use(cors({ credentials: true, origin: [...whitelist] }));
+app.use(
+  cors({ credentials: true, origin: [...whitelist, process.env.FRONTEND_URL] })
+);
 app.use(cookieParser());
 app.use(
   fileUpload({
