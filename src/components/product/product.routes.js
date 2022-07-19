@@ -9,6 +9,8 @@ const productRoutes = express.Router();
 productRoutes.get('/', productController.getProducts);
 // POST
 productRoutes.post('/', auth, authAdmin, productController.createProduct);
+productRoutes.post('/upload', auth, authAdmin, productController.uploadImg);
+productRoutes.post('/destroy', auth, authAdmin, productController.deleteImg);
 // PUT
 productRoutes.put('/:id', auth, authAdmin, productController.updateProduct);
 // DELETE

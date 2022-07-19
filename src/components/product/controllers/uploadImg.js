@@ -19,6 +19,8 @@ const uploadImg = async (req, res) => {
     }
 
     const results = await uploadImgToCloud(file.tempFilePath);
+    removeTmp(file.tempFilePath);
+
     return res.json(results);
   } catch (error) {
     return res.status(500).json({ msg: error.message });

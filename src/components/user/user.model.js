@@ -6,9 +6,6 @@ const SALT_ROUNDS = 10;
 
 const UserSchema = new mongoose.Schema(
   {
-    _id: {
-      type: mongoose.Schema.Types.ObjectId,
-    },
     name: {
       type: String,
       required: true,

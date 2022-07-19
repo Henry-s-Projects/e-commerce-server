@@ -28,6 +28,7 @@ const register = async (req, res) => {
     res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
       path: '/user/refresh_token',
+      maxAge: 1000 * 60 * 60 * 24 * 7,
     });
 
     res.status(201).json({
