@@ -19,7 +19,6 @@ const uploadImg = async (req, res) => {
     }
 
     const results = await uploadImgToCloud(file.tempFilePath);
-    removeTmp(file.tempFilePath);
 
     return res.json(results);
   } catch (error) {

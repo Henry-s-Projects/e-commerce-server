@@ -4,7 +4,8 @@ const deleteProduct = async (req, res) => {
   try {
     const { id } = req.params;
     await productServices.deleteById(id);
-    return res.json({ msg: 'product deleted' });
+    const products = await productServices.getAll();
+    return res.json({ msg: 'product deleted', payload: products });
   } catch (error) {
     return res.status(500).json({ msg: error.message });
   }
