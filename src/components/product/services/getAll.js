@@ -6,6 +6,7 @@ const getAll = async (filter, itemsPerPage, page, sortCondition) => {
       .sort(sortCondition)
       .limit(itemsPerPage)
       .skip(itemsPerPage * page);
+
     return products;
   } catch (error) {
     throw new Error(error.message);

@@ -13,6 +13,7 @@ const getProducts = async (req, res) => {
     const maxPrice = query.maxPrice ? parseInt(query.maxPrice) : MAX_PRICE;
     const minPrice = query.minPrice ? parseInt(query.minPrice) : MIN_PRICE;
     query.price = { $gte: minPrice, $lte: maxPrice };
+    if (query.title !== undefined) query.title = { $regex: query.title };
 
     delete query.itemsPerPage;
     delete query.page;
