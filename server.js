@@ -5,12 +5,14 @@ import fileUpload from 'express-fileupload';
 import cookieParser from 'cookie-parser';
 import ConnectMongoDB from './src/database/mongodb';
 import mainRoutes from './src/routes';
+import path from 'path';
 
 dotenv.config({ path: './src/config/.env' });
 
 const whitelist = ['http://localhost:3000'];
 
 const app = express();
+app.set('trust proxy', 1);
 app.use(express.json());
 app.use(
   cors({ credentials: true, origin: [...whitelist, process.env.FRONTEND_URL] })
@@ -38,6 +40,13 @@ app.post('/a', (req, res) => {
 
   res.json({ status: 'ok' });
 });
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
