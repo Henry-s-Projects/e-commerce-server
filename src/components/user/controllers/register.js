@@ -29,6 +29,8 @@ const register = async (req, res) => {
       httpOnly: true,
       path: '/user/refresh_token',
       maxAge: 1000 * 60 * 60 * 24 * 7,
+      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax', // must be 'none' to enable cross-site delivery
+      secure: process.env.NODE_ENV === 'production', // must be true if sameSite='none'
     });
 
     res.status(201).json({
