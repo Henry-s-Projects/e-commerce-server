@@ -3,7 +3,7 @@ import User from '../user.model';
 
 const refreshToken = (req, res) => {
   try {
-    const ref_token = req.cookies.refreshToken;
+    const ref_token = req.body.ref_token;
     if (!ref_token) {
       return res.status(401).json({ msg: 'Please Login or Register' });
     }
