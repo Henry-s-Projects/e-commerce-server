@@ -28,7 +28,6 @@ const login = async (req, res) => {
       msg: 'login successful',
       payload: user,
       token: accessToken,
-      refreshToken,
     });
   } catch (error) {
     return res.status(500).json({ msg: error.message });
