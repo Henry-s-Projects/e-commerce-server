@@ -31,7 +31,7 @@ const register = async (req, res) => {
       maxAge: 1000 * 60 * 60 * 24 * 7,
     });
 
-    res.status(201).json({
+    res.json({
       msg: 'create user successful',
       payload: newUser,
       token: accessToken,

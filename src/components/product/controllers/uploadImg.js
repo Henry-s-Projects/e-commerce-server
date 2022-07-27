@@ -7,6 +7,8 @@ const uploadImg = async (req, res) => {
       return res.status(400).json({ msg: 'No files were uploaded' });
     }
 
+    console.log(req.files);
+
     const file = req.files.file;
     if (file > 1024 * 1024 * 5) {
       removeTmp(file.tempFilePath);
