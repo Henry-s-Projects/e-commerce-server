@@ -13,14 +13,13 @@ describe('GET /product', () => {
     expect(res.status).to.equal(200);
     expect(res.body.payload).to.be.an('array');
   });
-  it('Get 2 products with filter by title: Jacket', async () => {
+  it('Get products with filter by title: Jacket', async () => {
     const res = await chai
       .request(server)
       .get('/product')
       .query({ title: 'Jacket' });
     expect(res.status).to.equal(200);
     expect(res.body.payload).to.be.an('array');
-    expect(res.body.payload.length).to.equal(2); // just have 2 products with title Jacket
   });
   it('Get 0 products with filter by title dont exist: ABCDEFIKLMNOKFKKASJCHJH', async () => {
     const res = await chai
@@ -62,7 +61,6 @@ describe('GET /product', () => {
       res.body.payload[0].price <= res.body.payload[1].price;
     expect(res.status).to.equal(200);
     expect(res.body.payload).to.be.an('array');
-    expect(res.body.payload.length).to.equal(2); // just have 2 products with title Jacket
     expect(comparePriceBetween2Products).to.be.true;
   });
 });

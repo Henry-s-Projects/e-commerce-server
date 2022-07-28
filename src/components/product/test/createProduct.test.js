@@ -6,7 +6,7 @@ describe('Create new product', () => {
   it('Create new product succeed', async () => {
     // change new product_id before create
     const data = {
-      product_id: '001',
+      product_id: '123',
       title: 'Jacket',
       price: '70',
       description: 'Jacket for man',

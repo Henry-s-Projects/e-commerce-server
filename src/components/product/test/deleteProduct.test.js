@@ -4,7 +4,7 @@ import productServices from '../services';
 describe('Delete Product', () => {
   it('Delete product succeed', async () => {
     // replace id of product to delete
-    const id = '62e159df74291e2e61794a3d';
+    const id = '62e2b126eaf2e9d778ea74bf';
     await productServices.deleteById(id);
   });
   it('Delete product failed because product not found', async () => {
