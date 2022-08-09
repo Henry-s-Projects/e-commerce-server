@@ -27,7 +27,13 @@ const getProducts = async (req, res) => {
       sort
     );
 
-    return res.json({ result: products.length, payload: products });
+    const amountProducts = await productServices.countAmountProducts(query);
+
+    return res.json({
+      result: products.length,
+      amount: amountProducts,
+      payload: products,
+    });
   } catch (error) {
     return res.status(500).json({ msg: error.message });
   }

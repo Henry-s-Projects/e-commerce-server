@@ -5,6 +5,7 @@ import updateById from './updateById';
 import getById from './getById';
 import findByProp from './findByProp';
 import updateCategory from './updateCategory';
+import countAmountProducts from './countAmountProducts';
 
 export default {
   getAll,
@@ -14,4 +15,5 @@ export default {
   getById,
   findByProp,
   updateCategory,
+  countAmountProducts,
 };
