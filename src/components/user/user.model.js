@@ -15,6 +15,7 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: [true, 'Please enter your email!'],
       trim: true,
+      unique: true,
     },
     password: {
       type: String,
@@ -45,6 +46,24 @@ UserSchema.methods.toJSON = function () {
   const user = this.toObject();
   delete user.password;
   return user;
+};
+
+UserSchema.statics.activationToken = function (userInfo) {
+  const activationToken = jwt.sign(
+    {
+      data: {
+        id: userInfo.id,
+        name: userInfo.name,
+        email: userInfo.email,
+        role: userInfo.role,
+      },
+    },
+    process.env.ACTIVATION_TOKEN_SECRET,
+    {
+      expiresIn: '5m',
+    }
+  );
+  return activationToken;
 };
 
 UserSchema.statics.generateToken = function (userInfo) {
