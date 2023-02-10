@@ -1,5 +1,5 @@
 import userServices from '../services';
-// import User from '../user.model';
+import User from '../user.model';
 
 const register = async (req, res) => {
   try {
@@ -24,31 +24,31 @@ const register = async (req, res) => {
         .json({ msg: 'Password must be at least 6 characters' });
     }
 
-    // const newUser = await userServices.createUser({
-    //   name,
-    //   email,
-    //   password,
-    // });
+    const newUser = await userServices.createUser({
+      name,
+      email,
+      password,
+    });
 
     // const activationToken = User.activationToken(newUser);
-    // const accessToken = User.generateToken(newUser);
-    // const refreshToken = User.refreshToken(newUser);
+    const accessToken = User.generateToken(newUser);
+    const refreshToken = User.refreshToken(newUser);
 
     // const url = `${process.env.CLIENT_URL}/user/activate/${activationToken}`;
     // sendMail(email, url);
 
-    res.json({ msg: 'Register Success! Please activate your email to start.' });
-    // res.cookie('refreshToken', refreshToken, {
-    //   httpOnly: true,
-    //   path: '/user/refresh_token',
-    //   maxAge: 1000 * 60 * 60 * 24 * 7,
-    // });
+    // res.json({ msg: 'Register Success! Please activate your email to start.' });
+    res.cookie('refreshToken', refreshToken, {
+      httpOnly: true,
+      path: '/user/refresh_token',
+      maxAge: 1000 * 60 * 60 * 24 * 7,
+    });
 
-    // res.json({
-    //   msg: 'create user successful',
-    //   payload: newUser,
-    //   token: accessToken,
-    // });
+    res.json({
+      msg: 'create user successful',
+      payload: newUser,
+      token: accessToken,
+    });
   } catch (error) {
     return res.status(500).json({ msg: error.message });
   }
